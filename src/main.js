@@ -9,7 +9,14 @@ import util from './utils/util'
 
 export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
-  Vue.component('Layout', DefaultLayout)
   Vue.use(ElementUI)
   Vue.prototype.$util = util
+  Vue.mixin({
+    data(){
+      return {
+        GRIDSOME_API_URL:process.env.GRIDSOME_API_URL
+      }
+    }
+  })
+  Vue.component('Layout', DefaultLayout)
 }
